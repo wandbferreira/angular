@@ -68,12 +68,21 @@ export class TaskPageComponent implements OnInit {
       console.log(`⏱️ Render: ${measure.duration.toFixed(2)}ms`);
 
       // Projeto levou em media 200ms para renderizar com tamanho de 300kb
-      // 2.8s com 4g
+      // 725s com 4g (sem gzip)
       // na aba de rede diz:
       // - que DOMContentLoad: 71ms
       // - Finish: 211
       // (LCP): 0.20 s
       // (CLS): 0.38
+
+      // COM ZONELESS *****
+      // Projeto levou em media 180ms para renderizar com tamanho de 270kb
+      // 662ms com 4g (sem gzip)
+      // na aba de rede diz:
+      // - que DOMContentLoad: 71ms
+      // - Finish: 206
+      // (LCP): 0.19 s
+      // (CLS): 0.23
     });
   }
 }
