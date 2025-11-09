@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Task } from '../../task.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-task-form',
@@ -31,7 +31,7 @@ export class TaskFormComponent implements OnChanges {
     }
   }
 
-  submitForm(): void {
+  submitForm(form: NgForm): void {
     const newTask: Partial<Task> = {
       ...this.task,
       title: this.title,
@@ -39,11 +39,6 @@ export class TaskFormComponent implements OnChanges {
     };
 
     this.save.emit(newTask);
-    this.resetForm();
-  }
-
-  private resetForm(): void {
-    this.title = '';
-    this.description = '';
+    form.resetForm();
   }
 }

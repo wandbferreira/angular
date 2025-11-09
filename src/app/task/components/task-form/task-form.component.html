@@ -1,8 +1,12 @@
 <form
   class="p-4 bg-slate-200 rounded-md"
-  (ngSubmit)="submitForm()"
+  (ngSubmit)="submitForm(form)"
   #form="ngForm"
 >
+  <div class="mt-1 text-sm text-red-600" *ngIf="form.submitted && form.invalid">
+    O campo título é obrigatório.
+  </div>
+
   <div class="mb-4">
     <input
       type="text"
@@ -29,6 +33,6 @@
     [disabled]="form.invalid"
     class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
   >
-    {{ mode === 'add' ? 'Adicionar Tarefa' : 'Salvar Tarefa' }}
+    {{ mode === "add" ? "Adicionar Tarefa" : "Salvar Tarefa" }}
   </button>
 </form>

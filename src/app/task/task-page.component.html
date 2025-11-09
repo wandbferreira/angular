@@ -9,7 +9,7 @@
   <app-task-list
     *ngIf="tasks"
     [tasks]="tasks"
-    (edit)="setEditMode()"
+    (edit)="setEditMode($event)"
     (toggle)="toggle($event)"
     (remove)="remove($event)"
   >

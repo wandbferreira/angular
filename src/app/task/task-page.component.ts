@@ -22,32 +22,33 @@ export class TaskPageComponent implements OnInit {
 
   save(task: Partial<Task>): void {
     if (this.mode === 'add') {
-      const newTask: Task = {
-        id: Date.now(),
-        title: task.title || '',
-        description: task.description || '',
-        completed: false,
-      };
-      this.tasks.push(newTask);
+      this.tasks.unshift({ ...task, completed: false, id: Date.now() } as Task);
+    } else if (this.mode === 'edit' && task.id != null) {
+      const currentTask = this.tasks.find((t) => t.id === task.id);
+      if (currentTask) {
+        currentTask.title = task.title ?? currentTask.title;
+        currentTask.description = task.description ?? currentTask.description;
+      }
     }
     this.taskService.saveTasks(this.tasks);
+    this.mode = 'add';
+    this.task = {};
   }
 
   remove(taskId: number): void {
     this.tasks = this.tasks.filter((task) => task.id !== taskId);
     this.taskService.saveTasks(this.tasks);
-  }
-
-  toggle(taskId: number): void {
-    const task = this.tasks.find((t) => t.id === taskId);
-    if (task) {
-      task.completed = !task.completed;
-      this.taskService.saveTasks(this.tasks);
-    }
-  }
-
-  setEditMode() {
-    this.mode = 'edit';
     this.task = {};
+    this.mode = 'add';
+  }
+
+  toggle(task: Task): void {
+    task.completed = !task.completed;
+    this.taskService.saveTasks(this.tasks);
+  }
+
+  setEditMode(task: Task): void {
+    this.mode = 'edit';
+    this.task = task;
   }
 }

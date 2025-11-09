@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Task } from '../../task.service';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Task } from '../../task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 export class TaskListComponent {
   @Input() tasks: Task[] = [];
 
-  @Output() toggle = new EventEmitter<number>();
-  @Output() edit = new EventEmitter<number>();
+  @Output() toggle = new EventEmitter<Task>();
+  @Output() edit = new EventEmitter<Task>();
   @Output() remove = new EventEmitter<number>();
 }
