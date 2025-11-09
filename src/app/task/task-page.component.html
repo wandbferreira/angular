@@ -1,1 +1,17 @@
-<main class="mt-8">asdf</main>
+<main class="rounded bg-white text-gray-700 p-6">
+  <h1 class="mb-3 text-2xl font-semibold">Gerenciador de Tarefas</h1>
+
+  <!-- Componente do formulário -->
+  <app-task-form [mode]="mode" [task]="task" (save)="save($event)">
+  </app-task-form>
+
+  <!-- Lista de tarefas -->
+  <app-task-list
+    *ngIf="tasks"
+    [tasks]="tasks"
+    (edit)="setEditMode()"
+    (toggle)="toggle($event)"
+    (remove)="remove($event)"
+  >
+  </app-task-list>
+</main>

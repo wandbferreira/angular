@@ -1,1 +1,25 @@
-<p>task-list works!</p>
+<ul class="mt-6">
+  <li *ngFor="let task of tasks" class="flex items-center justify-between mb-3">
+    <button
+      class="bg-slate-200 hover:bg-slate-300 flex w-full rounded p-3"
+      (click)="toggle.emit(task.id)"
+    >
+      <span class="w-full">{{ task.title }}</span>
+      <span>{{ task.completed ? "✅" : "⬜" }}</span>
+    </button>
+
+    <button
+      (click)="edit.emit(task.id)"
+      class="bg-slate-200 hover:bg-slate-300 rounded p-3 ml-2"
+    >
+      ✏️
+    </button>
+
+    <button
+      (click)="remove.emit(task.id)"
+      class="bg-slate-200 hover:bg-slate-300 rounded p-3 ml-2"
+    >
+      ❌
+    </button>
+  </li>
+</ul>
