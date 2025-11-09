@@ -72,6 +72,8 @@ export class TaskPageComponent implements OnInit {
       // na aba de rede diz:
       // - que DOMContentLoad: 71ms
       // - Finish: 211
+      // (LCP): 0.20 s
+      // (CLS): 0.38
     });
   }
 }
