@@ -2,16 +2,16 @@
   <h1 class="mb-3 text-2xl font-semibold">Gerenciador de Tarefas</h1>
 
   <!-- Componente do formulário -->
-  <app-task-form [mode]="mode" [task]="task" (save)="save($event)">
+  <app-task-form [mode]="mode" [task]="task" (saved)="save($event)">
   </app-task-form>
 
   <!-- Lista de tarefas -->
   <app-task-list
     *ngIf="tasks"
     [tasks]="tasks"
-    (edit)="setEditMode($event)"
-    (toggle)="toggle($event)"
-    (remove)="remove($event)"
+    (edited)="setEditMode($event)"
+    (toggled)="toggle($event)"
+    (removed)="remove($event)"
   >
   </app-task-list>
 </main>

@@ -10,7 +10,7 @@ import { Task } from '../../task.service';
 export class TaskListComponent {
   @Input() tasks: Task[] = [];
 
-  @Output() toggle = new EventEmitter<Task>();
-  @Output() edit = new EventEmitter<Task>();
-  @Output() remove = new EventEmitter<number>();
+  @Output() toggled = new EventEmitter<Task>();
+  @Output() edited = new EventEmitter<Task>();
+  @Output() removed = new EventEmitter<number>();
 }

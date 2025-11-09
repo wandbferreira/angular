@@ -15,30 +15,16 @@ import { FormsModule, NgForm } from '@angular/forms';
   templateUrl: './task-form.component.html',
   imports: [CommonModule, FormsModule],
 })
-export class TaskFormComponent implements OnChanges {
+export class TaskFormComponent {
   @Input() mode: 'add' | 'edit' = 'add';
   @Input() task: Partial<Task> = {};
 
-  @Output() save = new EventEmitter<Partial<Task>>();
-
-  title = '';
-  description = '';
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['task'] && this.task) {
-      this.title = this.task.title || '';
-      this.description = this.task.description || '';
-    }
-  }
+  @Output() saved = new EventEmitter<Partial<Task>>();
 
   submitForm(form: NgForm): void {
-    const newTask: Partial<Task> = {
-      ...this.task,
-      title: this.title,
-      description: this.description,
-    };
-
-    this.save.emit(newTask);
-    form.resetForm();
+    if (form.valid) {
+      this.saved.emit(this.task);
+      form.resetForm();
+    }
   }
 }

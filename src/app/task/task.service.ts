@@ -13,8 +13,6 @@ const STORAGE_KEY = 'tasks';
   providedIn: 'root',
 })
 export class TaskService {
-  constructor() {}
-
   fetchTasks(): Task[] {
     const data = localStorage.getItem(STORAGE_KEY);
     return data ? (JSON.parse(data) as Task[]) : [];

@@ -22,13 +22,15 @@ export class TaskPageComponent implements OnInit {
 
   save(task: Partial<Task>): void {
     if (this.mode === 'add') {
-      this.tasks.unshift({ ...task, completed: false, id: Date.now() } as Task);
+      this.tasks.unshift({
+        ...task,
+        completed: false,
+        id: Date.now(),
+      } as Task);
     } else if (this.mode === 'edit' && task.id != null) {
-      const currentTask = this.tasks.find((t) => t.id === task.id);
-      if (currentTask) {
-        currentTask.title = task.title ?? currentTask.title;
-        currentTask.description = task.description ?? currentTask.description;
-      }
+      this.tasks = this.tasks.map((t) =>
+        t.id === task.id ? { ...t, ...task } : t
+      );
     }
     this.taskService.saveTasks(this.tasks);
     this.mode = 'add';
@@ -49,6 +51,27 @@ export class TaskPageComponent implements OnInit {
 
   setEditMode(task: Task): void {
     this.mode = 'edit';
-    this.task = task;
+    this.task = { ...task };
+  }
+
+  ngAfterViewInit(): void {
+    requestIdleCallback(() => {
+      performance.mark('end-render');
+      performance.measure('render-time', 'start-render', 'end-render');
+
+      const el = document.getElementsByClassName(
+        'bg-blue-500'
+      )[0] as HTMLElement;
+      if (el) el.style.background = 'red';
+
+      const measure = performance.getEntriesByName('render-time')[0];
+      console.log(`⏱️ Render: ${measure.duration.toFixed(2)}ms`);
+
+      // Projeto levou em media 200ms para renderizar com tamanho de 300kb
+      // 2.8s com 4g
+      // na aba de rede diz:
+      // - que DOMContentLoad: 71ms
+      // - Finish: 211
+    });
   }
 }
