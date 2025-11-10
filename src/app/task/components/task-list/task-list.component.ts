@@ -13,4 +13,8 @@ export class TaskListComponent {
   @Output() toggled = new EventEmitter<Task>();
   @Output() edited = new EventEmitter<Task>();
   @Output() removed = new EventEmitter<number>();
+
+  logme() {
+    console.log('this is tasklist');
+  }
 }

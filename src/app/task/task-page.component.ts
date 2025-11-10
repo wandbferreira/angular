@@ -75,6 +75,17 @@ export class TaskPageComponent implements OnInit {
       // (LCP): 0.20 s
       // (CLS): 0.38
 
+      // Angular rodou
+      // 2x inicial
+      // 1x por digitar
+      // 1x por toggle
+      // 2x por deletar o selecionado
+      // 1x por deletar nao selecionado
+      // 2x por editar
+      // 2x por salvar sem mudanca
+      // 3x salvar com mudança
+      // 3x salvar novo
+
       // COM ZONELESS *****
       // Projeto levou em media 180ms para renderizar com tamanho de 270kb
       // 662ms com 4g (sem gzip)

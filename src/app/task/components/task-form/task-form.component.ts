@@ -27,4 +27,8 @@ export class TaskFormComponent {
       form.resetForm();
     }
   }
+
+  logme() {
+    console.log('this is taskform');
+  }
 }
